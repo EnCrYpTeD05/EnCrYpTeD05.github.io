@@ -5,65 +5,102 @@
 
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f7fa;
       margin: 0;
-      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f172a;
+      color: white;
+    }
+
+    .navbar {
+      background: #020617;
+      padding: 15px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar h1 {
+      margin: 0;
+      font-size: 22px;
+      color: #38bdf8;
+    }
+
+    .hero {
       text-align: center;
+      padding: 100px 20px;
     }
 
-    .container {
-      margin-top: 100px;
-    }
-
-    h1 {
+    .hero h2 {
       font-size: 40px;
-      color: #222;
+      margin-bottom: 10px;
     }
 
-    p {
-      color: #555;
+    .hero p {
+      color: #94a3b8;
       font-size: 18px;
     }
 
-    .card {
-      background: white;
-      padding: 20px;
-      margin: 30px auto;
-      width: 300px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    a {
+    .btn {
+      margin-top: 20px;
       display: inline-block;
-      margin-top: 10px;
+      background: #38bdf8;
+      color: black;
+      padding: 12px 25px;
+      border-radius: 8px;
       text-decoration: none;
-      color: white;
-      background: #007bff;
-      padding: 10px 20px;
-      border-radius: 5px;
+      font-weight: bold;
     }
 
-    a:hover {
-      background: #0056b3;
+    .section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .card {
+      background: #1e293b;
+      padding: 20px;
+      margin: 20px auto;
+      width: 300px;
+      border-radius: 12px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px;
+      color: #64748b;
+      font-size: 14px;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="container">
+  <div class="navbar">
     <h1>EnCrYpTeD05</h1>
-    <p>Cybersecurity | Bug Bounty Hunter</p>
+  </div>
+
+  <div class="hero">
+    <h2>Cybersecurity Researcher</h2>
+    <p>Bug Bounty Hunter | Pentester</p>
+    <a class="btn" href="https://github.com/EnCrYpTeD05/XSS-HUNTER">View My Tool</a>
+  </div>
+
+  <div class="section">
+    <h2>My Project</h2>
 
     <div class="card">
-      <h2>XSS-HUNTER</h2>
+      <h3>XSS-HUNTER</h3>
       <p>A tool for finding XSS vulnerabilities</p>
-      <a href="https://github.com/EnCrYpTeD05/XSS-HUNTER">
-        View Tool
-      </a>
+      <a class="btn" href="https://github.com/EnCrYpTeD05/XSS-HUNTER">Open</a>
     </div>
+  </div>
+
+  <div class="footer">
+    © 2026 EnCrYpTeD05
   </div>
 
 </body>
