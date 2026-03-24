@@ -2,7 +2,7 @@
 
 Cybersecurity Researcher | Bug Bounty Hunter  
 
-Creator of **XSS-HUNTER** – a tool for finding Cross-Site Scripting (XSS) vulnerabilities.
+Creator of **XSS-HUNTER** – A tool for finding Cross-Site Scripting (XSS) vulnerabilities.
 
 ---
 
