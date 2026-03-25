@@ -30,6 +30,8 @@ Creator of **XSS-HUNTER** – A tool for finding Cross-Site Scripting (XSS) vuln
 I am passionate about cybersecurity, penetration testing, and bug bounty hunting.  
 I build tools to automate vulnerability detection and improve security testing workflows.
 
+**© 2026 EnCrYpTeD05. All rights reserved. Do not copy or reuse without permission.**
+
 ---
 
 ## 🔍 Keywords
