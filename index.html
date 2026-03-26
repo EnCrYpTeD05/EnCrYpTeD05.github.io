@@ -272,7 +272,6 @@
   <a href="#home" onclick="closeDrawer()">Home</a>
   <a href="#about" onclick="closeDrawer()">About</a>
   <a href="#tools" onclick="closeDrawer()">Tools</a>
-  <a href="#blog" onclick="closeDrawer()">Blog</a>
   <a href="#contact" onclick="closeDrawer()">Contact</a>
 </div>
 
@@ -282,7 +281,6 @@
     <li><a href="#home">Home</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#tools">Tools</a></li>
-    <li><a href="#blog">Blog</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <button class="nav-hamburger" id="ham" onclick="toggleDrawer()">
@@ -374,9 +372,6 @@
       <div class="sec-label">Security Tools</div>
       <h2 class="sec-title">My Tools</h2>
       <div class="sec-divider"></div>
-      <p style="font-family:'Space Mono',monospace;font-size:11px;color:#888;margin-bottom:36px;letter-spacing:1px;">
-        Auto-loaded from <a href="https://github.com/EnCrYpTeD05" target="_blank" style="color:var(--pink);text-decoration:none;">GitHub</a> — new public repos appear here automatically.
-      </p>
     </div>
 
     <!-- GITHUB AUTO-LOADED TOOLS -->
@@ -384,73 +379,6 @@
       <div class="gh-loading">
         <span class="gh-loading-text" style="font-family:'Space Mono',monospace;font-size:12px;color:#666;letter-spacing:3px;">LOADING REPOS</span>
       </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ═══════ BLOG ═══════ -->
-<section id="blog">
-  <div class="sec-inner">
-    <div class="reveal">
-      <div class="sec-label">Writing</div>
-      <h2 class="sec-title">Blog</h2>
-      <div class="sec-divider"></div>
-    </div>
-
-    <div class="blog-list" id="blog-list">
-
-      <!--
-      ════════════════════════════════════════════════════════
-      HOW TO ADD A NEW BLOG POST:
-
-      1. Copy the block below (from "BLOG POST" to "/BLOG POST")
-      2. Change the id: post1 → post2 → post3 etc.
-      3. Update title, excerpt, tags, date
-      4. Paste your blog content inside <div class="post-content">
-         Use these tags:
-           <h2>Heading</h2>
-           <h3>Sub-heading</h3>
-           <p>Paragraph</p>
-           <strong>Bold</strong>  |  <em>Cyan highlight</em>
-           <ul><li>Bullet item</li></ul>
-           <blockquote><p>Quote</p></blockquote>
-           <div class="tip-box"><p>Tip or info box</p></div>
-      ════════════════════════════════════════════════════════
-
-      — BLOG POST —
-      <div class="blog-row reveal" onclick="togglePost('post1',this)">
-        <div class="blog-row-num">001</div>
-        <div>
-          <div class="brn">YOUR BLOG TITLE HERE</div>
-          <div class="bre">Short 1-2 line description of your post.</div>
-          <div class="brt"><span class="ttag">TAG1</span><span class="ttag">TAG2</span></div>
-        </div>
-        <div class="brm">
-          <span class="brd">YYYY-MM-DD</span>
-          <span class="ba">→</span>
-        </div>
-      </div>
-      <div class="blog-post-area" id="post1">
-        <button class="blog-close" onclick="togglePost('post1',null)">[ CLOSE ]</button>
-        <div class="post-content">
-          YOUR BLOG CONTENT HERE
-        </div>
-      </div>
-      — /BLOG POST —
-
-      -->
-
-    </div>
-
-    <!-- shown when no blogs yet -->
-    <div class="blog-empty" id="blog-empty-msg">
-      <span style="font-family:'Space Mono',monospace;font-size:12px;color:#444;letter-spacing:3px;">// NO POSTS YET</span>
-    </div>
-
-    <div class="blog-howto reveal">
-      <p><b>How to add a blog post:</b> Read the comment inside the HTML — it takes 2 minutes.<br>
-      Write your post in Notepad → copy-paste into the template inside <code>&lt;div class="post-content"&gt;</code> → save → push to GitHub. Done.</p>
     </div>
 
   </div>
@@ -479,7 +407,7 @@
   <div class="foot-copy">© 2026 <b>EnCrYpTeD05</b> — All rights reserved</div>
   <div class="foot-links">
     <a href="#home">Home</a><a href="#tools">Tools</a>
-    <a href="#blog">Blog</a><a href="https://github.com/EnCrYpTeD05" target="_blank">GitHub</a>
+    <a href="https://github.com/EnCrYpTeD05" target="_blank">GitHub</a>
   </div>
 </footer>
 
@@ -511,20 +439,8 @@ function initCardGlow(){
 
 /* ── SCROLL REVEAL ── */
 const ro=new IntersectionObserver(entries=>entries.forEach(en=>{if(en.isIntersecting)en.target.classList.add('vis');}),{threshold:0.08});
-function initReveal(){document.querySelectorAll('.reveal,.blog-row').forEach(el=>ro.observe(el));}
+function initReveal(){document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));}
 initReveal();
-
-/* ── BLOG TOGGLE ── */
-function togglePost(id,row){
-  const area=document.getElementById(id);
-  const wasOpen=area.classList.contains('open');
-  document.querySelectorAll('.blog-post-area.open').forEach(a=>a.classList.remove('open'));
-  document.querySelectorAll('.blog-row.active').forEach(r=>r.classList.remove('active'));
-  if(!wasOpen){
-    area.classList.add('open');
-    if(row){row.classList.add('active');setTimeout(()=>row.scrollIntoView({behavior:'smooth',block:'start'}),50);}
-  }
-}
 
 /* ── ACTIVE NAV ── */
 const secs=document.querySelectorAll('section[id]');
@@ -552,11 +468,13 @@ async function loadGitHubRepos(){
     if(!res.ok) throw new Error('API error');
     const repos = await res.json();
 
-    // Filter: public, not forked, not hidden via topic
+    // Filter: public, not forked, not hidden via topic, not .io site repo
     const filtered = repos.filter(r =>
       !r.fork &&
       !r.private &&
-      !(r.topics && r.topics.includes('hidden'))
+      !(r.topics && r.topics.includes('hidden')) &&
+      !r.name.endsWith('.github.io') &&
+      !r.name.endsWith('.io')
     );
 
     if(filtered.length === 0){
@@ -629,13 +547,6 @@ async function loadGitHubRepos(){
 }
 
 loadGitHubRepos();
-
-/* ── BLOG EMPTY STATE ── */
-const blogList = document.getElementById('blog-list');
-const emptyMsg = document.getElementById('blog-empty-msg');
-// Check if any real blog rows exist (not comments)
-const hasBlogPosts = blogList.querySelectorAll('.blog-row').length > 0;
-if(hasBlogPosts) emptyMsg.style.display = 'none';
 </script>
 </body>
 </html>
